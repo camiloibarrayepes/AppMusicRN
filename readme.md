@@ -1,8 +1,8 @@
 # App Music in React Native
 
-Second Commit: The Animated.View with PanResponder.panHandlers can move and expand it when the move is to Up (axis y)
+3 Commit: Allows to slide up and fits in the center, the same is allowed in mode
 
-![alt text](http://img110.xooimage.com/files/e/6/6/imagen-commit-2-54d80d1.jpg)
+![alt text](http://img110.xooimage.com/files/f/e/8/commit-3-54d8195.jpg)
 
 ### Prerequisites
 

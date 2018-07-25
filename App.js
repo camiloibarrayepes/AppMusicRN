@@ -32,7 +32,19 @@ class AppMusic extends Component{
         this.animation.setValue({x:0, y:gestureState.dy})
       },
       onPanResponderRelease:(evt, gestureState)=>{
-
+        if(gestureState.dy < 0)
+        {
+          Animated.spring(this.animation.y, {
+            toValue: -SCREEN_HEIGHT + 120,
+            tension: 1
+          }).start()
+        }
+        else if(gestureState.dy > 0){
+          Animated.spring(this.animation.y, {
+            toValue: SCREEN_HEIGHT - 120,
+            tension: 1
+          }).start()
+        }
       }
     })
   }
@@ -46,6 +58,24 @@ class AppMusic extends Component{
     animatedImageHeight = this.animation.y.interpolate({
       inputRange:[0,SCREEN_HEIGHT-90],
       outputRange:[200, 32],
+      extrapolate: "clamp"
+    })
+
+    animatedSongTitleOpacity = this.animation.y.interpolate({
+      inputRange:[0,SCREEN_HEIGHT-500, SCREEN_HEIGHT-90],
+      outputRange:[0, 0, 1],
+      extrapolate: "clamp"
+    })
+
+    animatedImageMarginLeft = this.animation.y.interpolate({
+      inputRange:[0, SCREEN_HEIGHT-90],
+      outputRange:[SCREEN_WIDHT/2 - 100, 10],
+      extrapolate: "clamp"
+    })
+
+    animatedHeaderHeight = this.animation.y.interpolate({
+      inputRange:[0, SCREEN_HEIGHT-90],
+      outputRange:[SCREEN_HEIGHT/2 , 90],
       extrapolate: "clamp"
     })
 
@@ -63,21 +93,21 @@ class AppMusic extends Component{
 
       <Animated.View
         {... this.PanResponder.panHandlers}
-        style={{height:80, borderTopWidth:1, borderTopColor:'#ebe5e5',
+        style={{height:animatedHeaderHeight, borderTopWidth:1, borderTopColor:'#ebe5e5',
                 flexDirection:'row', alignItems: 'center'}}
         
       >
         <View style={{flex:4, flexDirection:'row', alignItems:'center'}}
         >
-          <Animated.View style={{height:animatedImageHeight, width:animatedImageHeight, marginLeft:10}}>
+          <Animated.View style={{height:animatedImageHeight, width:animatedImageHeight, marginLeft:animatedImageMarginLeft}}>
             <Image style={{flex:1, width:null, height:null}}
-            source={require('./assets/greenday.jpeg')} />
+            source={require('./assets/greenday.jpg')} />
           </Animated.View>
-          <Animated.Text style={{opacity:1, fontSize: 18, paddingLeft: 10}}>
+          <Animated.Text style={{opacity:animatedSongTitleOpacity, fontSize: 18, paddingLeft: 10}}>
             Green Day - American Idiot
           </Animated.Text>
         </View>
-        <Animated.View style={{opacity: 1, flex: 1, flexDirection:'row'}}>
+        <Animated.View style={{opacity: animatedSongTitleOpacity, flex: 1, flexDirection:'row'}}>
           <IonIcons name="md-pause" size={32} />
           <IonIcons name="md-play" size={32} />
         </Animated.View>
