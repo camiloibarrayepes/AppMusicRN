@@ -1,8 +1,8 @@
 # App Music in React Native
 
-First commit
+Second Commit: The Animated.View with PanResponder.panHandlers can move and expand it when the move is to Up (axis y)
 
-![alt text](http://img110.xooimage.com/files/e/2/e/captura-de-pantal...06-a.-m.-54d8083.png)
+![alt text](http://img110.xooimage.com/files/e/6/6/imagen-commit-2-54d80d1.jpg)
 
 ### Prerequisites
 

@@ -21,6 +21,20 @@ class AppMusic extends Component{
 
   componentWillMount(){
     this.animation = new Animated.ValueXY({ x: 0, y: SCREEN_HEIGHT - 90 })
+
+    this.PanResponder = PanResponder.create({
+      onMoveShouldSetPanResponder:()=>true,
+      onPanResponderGrant:(evt, gestureState)=>{
+        this.animation.extractOffset()
+
+      },
+      onPanResponderMove:(evt, gestureState)=>{
+        this.animation.setValue({x:0, y:gestureState.dy})
+      },
+      onPanResponderRelease:(evt, gestureState)=>{
+
+      }
+    })
   }
 
   render(){
@@ -28,6 +42,12 @@ class AppMusic extends Component{
     const animatedHeight = {
       transform: this.animation.getTranslateTransform()
     }
+
+    animatedImageHeight = this.animation.y.interpolate({
+      inputRange:[0,SCREEN_HEIGHT-90],
+      outputRange:[200, 32],
+      extrapolate: "clamp"
+    })
 
     return(
     <Animated.View style={{flex: 1, backgroundColor: 'white'}}>
@@ -42,12 +62,14 @@ class AppMusic extends Component{
       >
 
       <Animated.View
+        {... this.PanResponder.panHandlers}
         style={{height:80, borderTopWidth:1, borderTopColor:'#ebe5e5',
                 flexDirection:'row', alignItems: 'center'}}
+        
       >
         <View style={{flex:4, flexDirection:'row', alignItems:'center'}}
         >
-          <Animated.View style={{height:32, width:32, marginLeft:10}}>
+          <Animated.View style={{height:animatedImageHeight, width:animatedImageHeight, marginLeft:10}}>
             <Image style={{flex:1, width:null, height:null}}
             source={require('./assets/greenday.jpeg')} />
           </Animated.View>
