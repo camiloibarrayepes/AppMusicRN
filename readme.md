@@ -1,8 +1,8 @@
 # App Music in React Native
 
-3 Commit: Allows to slide up and fits in the center, the same is allowed in mode
+Final Commit: Allows to slide up and fits in the center with the music Icons, also allow to slide to up to add more info about the song
 
-![alt text](http://img110.xooimage.com/files/f/e/8/commit-3-54d8195.jpg)
+![alt text](http://img110.xooimage.com/files/e/2/5/3d-54da9d7.jpg)
 
 ### Prerequisites
 
